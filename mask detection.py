@@ -17,8 +17,8 @@ weared_mask_font_color = (0, 255, 0)
 not_weared_mask_font_color = (0, 0, 255)
 thickness = 2
 font_scale = 1
-weared_mask = "Dziekujemy za ubranie maseczki"
-not_weared_mask = "Prosimy o ubranie maseczki"
+weared_mask = "thanks for wearing mask"
+not_weared_mask = "pleas wear mask"
 broker = "192.168.1.100"
 port = 1883
 username = 'pi'
@@ -92,7 +92,7 @@ while 1:
                     # Face and Lips are detected but lips coordinates are within face cordinates which `means lips prediction is true and
                     # person is not waring mask
                     cv2.putText(img, not_weared_mask, org, font, font_scale, not_weared_mask_font_color, thickness, cv2.LINE_AA)
-                    # tutaj skrypt raspberrypi
+                    # raspberry pi script
                     #client.publish("cmnd/tasmota_1/POWER", "0")
                     cv2.rectangle(img, (mx, my), (mx + mh, my + mw), (0, 0, 255), 3)
                     break
