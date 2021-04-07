@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import random
-import paho.mqtt.client as mqtt
+
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
@@ -19,27 +19,6 @@ thickness = 2
 font_scale = 1
 weared_mask = "thanks for wearing mask"
 not_weared_mask = "pleas wear mask"
-broker = "192.168.1.100"
-port = 1883
-username = 'pi'
-password = 'raspberry'
-def on_connect(client, userdata, flags, rc):
-    print("Connected with code: ", rc)
-    client.subscribe('test')
-
-
-def on_message(client, userdata, msg):
-    print(str(msg.payload))
-
-
-client = mqtt.Client("test")
-client.on_connect = on_connect
-client.on_message = on_message
-
-client.username_pw_set(username, password)
-client.connect(broker, port, 60)
-
-client.loop_start()
 
 # Read video
 cap = cv2.VideoCapture(0)
@@ -93,7 +72,7 @@ while 1:
                     # person is not waring mask
                     cv2.putText(img, not_weared_mask, org, font, font_scale, not_weared_mask_font_color, thickness, cv2.LINE_AA)
                     # raspberry pi script
-                    #client.publish("cmnd/tasmota_1/POWER", "0")
+                   
                     cv2.rectangle(img, (mx, my), (mx + mh, my + mw), (0, 0, 255), 3)
                     break
 
